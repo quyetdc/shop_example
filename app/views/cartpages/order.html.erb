@@ -1,0 +1,60 @@
+	<div class="container">
+		<div class ="list-top-back">
+			<%= link_to "", homes_path, class: "glyphicon glyphicon-home"%>
+			<span  class="text-capitalize">Your Cart</span>
+		</div>
+		<%- model_class = Product -%>
+		<div class="row">
+			<div class="list-element">
+				<div class="col-md-9 pull-right">
+					<%= @product.name %>
+				</div>
+				<div class="col-md-3 pull-left">
+					<div class="list-element-left">
+						<div class="list-box">
+							<p>POPULAR</p>
+							<%	dem =0	%>
+								<% @popular.each do |product| %>
+									<% dem += 1 %>
+								<div class="list-element-left-box">
+									<div class="row">
+										<div class="col-md-5">
+											<%= link_to image_tag(product.images, alt:"images"), detailed_path(product) %>
+										</div>
+										<div class="col-md-7">
+											<dl>
+												<dt><%= link_to product.name, detailed_path(product) %></dt>
+												<dd>$ <%= product.price %></dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+								<% break if dem == 3 %>
+							<% end %>
+						</div>
+						<div class="list-box">
+							<p>BEST SELLERS</p>
+							<%	dem =0	%>
+								<% @best_sellers.each do |product|%>
+									<% dem += 1 %>
+								<div class="list-element-left-box">
+									<div class="row">
+										<div class="col-md-5">
+											<%= link_to image_tag(product.images, alt:"images"), detailed_path(product) %>
+										</div>
+										<div class="col-md-7">
+											<dl>
+												<dt><%= link_to product.name, detailed_path(product) %></dt>
+												<dd>$ <%= product.price %></dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+								<% break if dem == 3 %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

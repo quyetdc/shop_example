@@ -1,0 +1,104 @@
+	<div class="container">
+		<div class ="list-top-back">
+			<%= link_to "", homes_path, class: "glyphicon glyphicon-home"%>
+			<span  class="text-capitalize"><%= @category.name %></span>
+		</div>
+		<%- model_class = Product -%>
+		<div class="row">
+			<div class="list-element">
+				<div class="col-md-9 pull-right">
+					<div class="list-element-top">
+						<div class="row">
+							<div class="col-md-3">
+								<% @products.each do |product|
+									if @category.id == product.category_id%>
+									<%= image_tag(product.images, alt:"images")%>
+									<% break %>
+									<% 	end
+								end%>
+							</div>
+							<div class="col-md-9">
+								<p><%= @category.name %></p>
+								<span><%= @category.introduce%></span>
+							</div>
+						</div>
+					</div>
+					<div class="list-element-bottom">
+						<div class="row">
+						<% @products.each do |product| 
+						if @category.id == product.category_id %>	
+							<div class="col-md-4 pull-right">
+								<div class="tabs-element">
+									<div class="content-tab-images">
+										<%= link_to image_tag(product.images, alt: "images"), detailed_path(product) %>
+									</div>
+									<div class="content-tab-name">
+										<a href="#">2B6AC 50Wx2 Dual-Output AC-DC Dual-Power LiPo Balance Charger Discharger</a>
+										<p class="pride">$407.51</p>
+									</div>
+									<div class="content-tab-button">
+										<a class="btn btn-default btn-lg" href="#" role="button">
+										<span class="glyphicon glyphicon-shopping-cart pull-left" aria-hidden="true"></span>ADD TO CART</a>	MORE
+									</div>
+								</div>
+							</div>
+							<%	end
+							end %>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 pull-left">
+					<div class="list-element-left">
+						<div class="list-box">
+							<p>TOP SELLERS</p>
+							<%	dem =0	
+								@products.each do |product|
+								if product.best_sellers == 1 
+									dem += 1 %>
+								<div class="list-element-left-box">
+									<div class="row">
+										<div class="col-md-5">
+											<%= link_to image_tag(product.images, alt:"images"), detailed_path(product) %>
+										</div>
+										<div class="col-md-7">
+											<dl>
+												<dt><%= link_to product.name, detailed_path(product) %></dt>
+												<dd>$ <%= product.price %></dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+								<% 
+									break if dem == 3
+								end
+							end %>
+						</div>
+						<div class="list-box">
+							<p>POPULAR</p>
+							<%	dem =0	
+								@products.each do |product|
+								if product.popular == 1 
+									dem += 1 %>
+								<div class="list-element-left-box">
+									<div class="row">
+										<div class="col-md-5">
+											<%= link_to image_tag(product.images, alt:"images"), detailed_path(product) %>
+										</div>
+										<div class="col-md-7">
+											<dl>
+												<dt><%= link_to product.name, detailed_path(product) %></dt>
+												<dd>$ <%= product.price %></dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+								<% 
+									break if dem == 3
+								end
+							end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
